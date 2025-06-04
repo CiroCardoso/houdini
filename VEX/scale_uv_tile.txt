@@ -6,30 +6,54 @@
 // Run Over Vertices
 
 // --- User Parameters ---
-int target_tile = chi("target_udim_tile");
-float scale_param_val = chf("scale_amount");
-
-int prim_tile_id_from_prim = -999;
-if (hasprimattrib(0, "udim_tile")) {
-    prim_tile_id_from_prim = prim(0, "udim_tile", @primnum);
-}
+string target_udims_string = chs("target_udims_str"); 
+float scale_factor = chf("scale_amount");
 
 // --- Logic ---
-if (prim_tile_id_from_prim == target_tile) {
-    int u_offset = (target_tile - 1001) % 10;
-    int v_offset = (target_tile - 1001) / 10;
+int prim_tile_id = -1;
 
-    vector pivot_uv;
-    pivot_uv.x = u_offset + 0.5;
-    pivot_uv.y = v_offset + 0.5;
-    pivot_uv.z = 0; 
+if (hasprimattrib(0, "udim_tile")) {
+    // Assuming 'udim_tile' is an integer attribute
+    prim_tile_id = prim(0, "udim_tile", @primnum);
+}
 
-    vector current_uv = v@uv;
-    current_uv -= pivot_uv;
-    current_uv *= scale_param_val; 
-    current_uv += pivot_uv;
+if (prim_tile_id != -1 && target_udims_string != "") {
 
-    v@uv.x = current_uv.x;
-    v@uv.y = current_uv.y;
+    string udim_list_array[] = split(target_udims_string, ", ");
 
+    int is_target_udim = 0;
+
+    
+    foreach (string udim_str_from_list; udim_list_array) {
+        if (udim_str_from_list == "") {
+            continue;
+        }
+
+        int udim_int_from_list = atoi(udim_str_from_list);
+
+        if (udim_int_from_list == prim_tile_id && udim_int_from_list >= 1001) { 
+            is_target_udim = 1;
+            break; // Found a match, no need to check further in this list
+        }
+    }
+
+    if (is_target_udim == 1) {
+        int current_target_tile_for_pivot = prim_tile_id;
+
+        int u_tile_offset = (current_target_tile_for_pivot - 1001) % 10;
+        int v_tile_offset = (current_target_tile_for_pivot - 1001) / 10;
+
+        vector pivot_point;
+        pivot_point.x = u_tile_offset + 0.5;
+        pivot_point.y = v_tile_offset + 0.5;
+        pivot_point.z = 0;
+
+        vector current_vertex_uv = v@uv;
+        current_vertex_uv -= pivot_point;
+        current_vertex_uv *= scale_factor;
+        current_vertex_uv += pivot_point;
+
+        v@uv.x = current_vertex_uv.x;
+        v@uv.y = current_vertex_uv.y;
+    }
 }
