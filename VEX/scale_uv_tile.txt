@@ -3,6 +3,7 @@
 // Comments, issues or suggestions - cirocardoso@yahoo.co.uk
 
 // Use the udim tile node to create the udim_tile prim attribute
+// Run Over Vertices
 
 // --- User Parameters ---
 int target_tile = chi("target_udim_tile");
