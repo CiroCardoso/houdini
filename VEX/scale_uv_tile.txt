@@ -1,0 +1,34 @@
+// Scale UV tile
+// Ciro Cardoso - 06/2025
+// Comments, issues or suggestions - cirocardoso@yahoo.co.uk
+
+// Use the udim tile node to create the udim_tile prim attribute
+
+// --- User Parameters ---
+int target_tile = chi("target_udim_tile");
+float scale_param_val = chf("scale_amount");
+
+int prim_tile_id_from_prim = -999;
+if (hasprimattrib(0, "udim_tile")) {
+    prim_tile_id_from_prim = prim(0, "udim_tile", @primnum);
+}
+
+// --- Logic ---
+if (prim_tile_id_from_prim == target_tile) {
+    int u_offset = (target_tile - 1001) % 10;
+    int v_offset = (target_tile - 1001) / 10;
+
+    vector pivot_uv;
+    pivot_uv.x = u_offset + 0.5;
+    pivot_uv.y = v_offset + 0.5;
+    pivot_uv.z = 0; 
+
+    vector current_uv = v@uv;
+    current_uv -= pivot_uv;
+    current_uv *= scale_param_val; 
+    current_uv += pivot_uv;
+
+    v@uv.x = current_uv.x;
+    v@uv.y = current_uv.y;
+
+}
