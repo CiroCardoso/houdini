@@ -1,0 +1,60 @@
+// UDIM Stack
+// Ciro Cardoso - 06/2025
+// Comments, issues or suggestions - cirocardoso@yahoo.co.uk
+
+// Stacks the UDIMs from Move Group into Base group
+// Run Over Detail
+
+int grid_width = 10;
+string base_group = chs("base_group");
+string move_group = chs("move_group");
+
+
+int max_udim_base = 1001;
+int uvs_prims[] = expandprimgroup(0, base_group);
+
+foreach (int prim_num; uvs_prims) {
+    
+    int first_vtx = primvertex(0, prim_num, 0);
+    vector uv = vertex(0, "uv", first_vtx);
+
+    int current_udim = 1001 + int(floor(uv.x)) + grid_width * int(floor(uv.y));
+    
+    max_udim_base = max(max_udim_base, current_udim);
+    
+    setprimattrib(0, "udim_tile", prim_num, current_udim, "set");
+}
+
+
+int move_prims[] = expandprimgroup(0, move_group);
+
+foreach (int prim_num; move_prims) {
+    int first_vtx = primvertex(0, prim_num, 0);
+    vector representative_uv = vertex(0, "uv", first_vtx);
+    int original_udim = 1001 + int(floor(representative_uv.x)) + grid_width * int(floor(representative_uv.y));
+
+    int new_udim_linear = max_udim_base + (original_udim - 1000);
+
+    int original_tile_index = original_udim - 1001;
+    int original_col = original_tile_index % grid_width;
+    int original_row = original_tile_index / grid_width;
+
+    int new_tile_index = new_udim_linear - 1001;
+    int new_col = new_tile_index % grid_width;
+    int new_row = new_tile_index / grid_width;
+
+    float u_offset = new_col - original_col;
+    float v_offset = new_row - original_row;
+    
+    int prim_verts[] = primvertices(0, prim_num);
+    int vtx_local_index = 0;
+    foreach(int vtx_global_id; prim_verts) {
+        vector uv_pos = vertex(0, "uv", vtx_global_id);
+        uv_pos.x += u_offset;
+        uv_pos.y += v_offset;
+        setvertexattrib(0, "uv", prim_num, vtx_local_index, uv_pos);
+        vtx_local_index++;
+    }
+    
+    setprimattrib(0, "udim_tile", prim_num, new_udim_linear, "set");
+}
