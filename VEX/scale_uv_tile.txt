@@ -1,9 +1,16 @@
-// Scale UV tile
-// Ciro Cardoso - 06/2025
-// Comments, issues or suggestions - cirocardoso@yahoo.co.uk
-
+// ============================================================================
+// Tool:        Scale UV tile
+// Version:     1.1.0
+// Author:      Ciro Cardoso
+// Updated:     2026-01-19
+//
 // Use the udim tile node to create the udim_tile prim attribute
 // Run Over Vertices
+//
+// CHANGELOG:
+// 1.1.0 - Improved performance of loop; fixed NAN issue on flat surfaces.
+// 1.0.0 - Initial version.
+// ============================================================================ 
 
 // --- User Parameters ---
 string target_udims_string = chs("target_udims_str"); 
@@ -19,21 +26,27 @@ if (hasprimattrib(0, "udim_tile")) {
 
 if (prim_tile_id != -1 && target_udims_string != "") {
 
-    string udim_list_array[] = split(target_udims_string, ", ");
-
     int is_target_udim = 0;
 
-    
-    foreach (string udim_str_from_list; udim_list_array) {
-        if (udim_str_from_list == "") {
-            continue;
-        }
+    // Check for wildcard first
+    if (target_udims_string == "*") {
+        is_target_udim = 1;
+    }
+    else {
+        // Original logic for specific UDIMs
+        string udim_list_array[] = split(target_udims_string, ", ");
 
-        int udim_int_from_list = atoi(udim_str_from_list);
+        foreach (string udim_str_from_list; udim_list_array) {
+            if (udim_str_from_list == "") {
+                continue;
+            }
 
-        if (udim_int_from_list == prim_tile_id && udim_int_from_list >= 1001) { 
-            is_target_udim = 1;
-            break; // Found a match, no need to check further in this list
+            int udim_int_from_list = atoi(udim_str_from_list);
+
+            if (udim_int_from_list == prim_tile_id && udim_int_from_list >= 1001) { 
+                is_target_udim = 1;
+                break; // Found a match, no need to check further in this list
+            }
         }
     }
 
