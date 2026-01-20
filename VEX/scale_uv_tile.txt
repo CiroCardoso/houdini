@@ -16,24 +16,21 @@
 string target_udims_string = chs("target_udims_str"); 
 float scale_factor = chf("scale_amount");
 
-// --- Logic ---
 int prim_tile_id = -1;
 
 if (hasprimattrib(0, "udim_tile")) {
-    // Assuming 'udim_tile' is an integer attribute
     prim_tile_id = prim(0, "udim_tile", @primnum);
 }
 
 if (prim_tile_id != -1 && target_udims_string != "") {
 
     int is_target_udim = 0;
-
-    // Check for wildcard first
+ 
     if (target_udims_string == "*") {
         is_target_udim = 1;
     }
     else {
-        // Original logic for specific UDIMs
+        
         string udim_list_array[] = split(target_udims_string, ", ");
 
         foreach (string udim_str_from_list; udim_list_array) {
@@ -45,8 +42,7 @@ if (prim_tile_id != -1 && target_udims_string != "") {
 
             if (udim_int_from_list == prim_tile_id && udim_int_from_list >= 1001) { 
                 is_target_udim = 1;
-                break; // Found a match, no need to check further in this list
-            }
+                break;            }
         }
     }
 
