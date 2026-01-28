@@ -1,8 +1,6 @@
-- 👋 Hi, I’m Ciro Cardoso
-- 👀 I’m currently in creating cool tools for Animation\VFX
-- 🌱 I’m currently learning C++
-- 💞️ I’m looking to collaborate on 3ds Max\Arnold + Houdini projects
-- 📫 How to reach me cirocardoso (at) yahoo.co.uk
+# Houdini Tool
+
+>💡 This is a place where I share some `VEX` and `Python` tools along with some `hip` files.
 
 
 ## 🌐 Socials:
