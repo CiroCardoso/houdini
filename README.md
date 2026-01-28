@@ -10,7 +10,7 @@
 
 ## 🐍 Python
 
-### TexToTX
+### [TexToTX](https://github.com/CiroCardoso/houdini/tree/main/PYTHON/TexToTx)
 
 This tool converts the textures inside a folder(s) or a texture selection into 
 
