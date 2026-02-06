@@ -22,6 +22,8 @@ This tool converts the textures inside a folder(s) or a texture selection into
 
 This tool converts the textures inside a folder(s) or a texture selection into
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/MfZR3tg2eVw/0.jpg)](https://www.youtube.com/watch?v=MfZR3tg2eVw)
+
 ### ParmTransfer
 
 A tool to compare and selectively copy parameters between nodes.
