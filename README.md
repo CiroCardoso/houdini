@@ -6,7 +6,11 @@
 
 ### Scale UV tile
 
+![Another example](https://github.com/CiroCardoso/houdini/blob/main/VEX/uv_tools/gifs/udim_tool.gif)
+
 ### UDIM Stack
+
+![Scale Uv Tile - VEX Tool](https://github.com/CiroCardoso/houdini/blob/main/VEX/uv_tools/gifs/udim_stack_final.gif)
 
 ## 🐍 Python
 
