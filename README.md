@@ -6,24 +6,29 @@
 
 ### Scale UV tile
 
-![Another example](https://github.com/CiroCardoso/houdini/blob/main/VEX/uv_tools/gifs/udim_tool.gif)
+![Scale UV Tile](https://github.com/CiroCardoso/houdini/blob/main/VEX/uv_tools/gifs/udim_tool.gif)
 
 ### UDIM Stack
 
-![Scale Uv Tile - VEX Tool](https://github.com/CiroCardoso/houdini/blob/main/VEX/uv_tools/gifs/udim_stack_final.gif)
+![UDIM Stack](https://github.com/CiroCardoso/houdini/blob/main/VEX/uv_tools/gifs/udim_stack_final.gif)
 
 ## 🐍 Python
 
-### [TexToTX](https://github.com/CiroCardoso/houdini/tree/main/PYTHON/TexToTx)
+### TexToTX
 
 This tool converts the textures inside a folder(s) or a texture selection into 
+
+![TextToTX](https://github.com/CiroCardoso/houdini/blob/main/PYTHON/gifs/TexToTx.gif)
 
 ### TexToMtlX
 
 This tool converts the textures inside a folder(s) or a texture selection into
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/MfZR3tg2eVw/0.jpg)](https://www.youtube.com/watch?v=MfZR3tg2eVw)
+![TextToMtlX](https://github.com/CiroCardoso/houdini/blob/main/PYTHON/gifs/TexToMtlX.gif)
+
 
 ### ParmTransfer
 
 A tool to compare and selectively copy parameters between nodes.
+
+![TextToMtlX](https://github.com/CiroCardoso/houdini/blob/main/PYTHON/gifs/ParmTransfer.gif)
