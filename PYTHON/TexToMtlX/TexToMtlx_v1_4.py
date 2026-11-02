@@ -9,7 +9,7 @@
 ## Version 1.1 - Added support for cavity, translucency maps. Added support to mtlXTiledImage                        ##
 ## Version 1.2 - Fix for the Solaris Composition Arc missing from material, fix for images without underscore        ##
 ## Version 1.3 - Clean up the code, implemented the option to select multiple folders, fix issue with the normal     ##
-##                                                                                                                   ##
+## Version 1.4 - Added support for PySide6                                                                           ##
 #######################################################################################################################
 import hou
 import os
@@ -19,7 +19,11 @@ import time
 import logging
 import threading
 
-from PySide2 import QtWidgets, QtGui, QtCore
+try:
+    from PySide6 import QtWidgets, QtGui, QtCore
+except ImportError:
+    from PySide2 import QtWidgets, QtGui, QtCore
+
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
